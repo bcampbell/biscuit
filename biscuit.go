@@ -1,7 +1,5 @@
+// Package biscuit contains functions for reading http cookies from files.
 package biscuit
-
-// package biscuit contains functions for reading http cookies from files.
-//
 
 import (
 	"bufio"
@@ -22,9 +20,7 @@ func ReadCookies(r io.Reader) ([]*http.Cookie, error) {
 	for scanner.Scan() {
 		line := scanner.Text()
 		// skip blank lines and comments
-
-		// TODO: curl supports a "#HttpOnly_" prefix on first field for httponly cookies. Worth supporting, I think.
-
+		// curl supports a "#HttpOnly_" prefix on first field for httponly cookies. Worth supporting, I think.
 		trimmed := strings.TrimSpace(line)
 		if len(trimmed) == 0 || strings.HasPrefix(trimmed, "#") {
 			if !strings.HasPrefix(trimmed, "#HttpOnly_") {
